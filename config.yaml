@@ -1,0 +1,43 @@
+audio:
+  device: "auto"              # "auto" = detect monitor source, or exact device name
+  sample_rate: 16000
+  chunk_ms: 100               # audio callback chunk size in milliseconds
+  buffer_max_seconds: 10      # rolling buffer max length
+
+vad:
+  enabled: true
+  threshold: 0.5              # Silero VAD speech probability threshold (0-1)
+  min_silence_ms: 500         # silence duration before utterance_end signal
+  min_speech_ms: 250          # minimum speech duration to count as utterance
+
+transcription:
+  backend: "chirp2"            # "local" or "chirp2"
+  language: "en"              # BCP-47 code: "ja", "en", "ko", "zh"
+  polling_interval_ms: 300    # how often streaming loop runs ASR
+
+local:
+  # model: "Systran/faster-distil-whisper-small.en"
+  model: "Systran/faster-distil-whisper-medium.en"
+  compute_type: "float16"        # CPU: "int8" — do NOT use "float16" without CUDA
+  device: "cuda"               # "cpu" or "cuda"
+  beam_size: 1                # 1=greedy (fast), 3-5=beam search (accurate)
+  flush_beam_size: 3          # beam size for final flush on utterance end
+
+chirp2:
+  model: "latest_long"
+  chunk_ms: 100
+
+overlay:
+  visible: true
+  x: 100                      # screen position
+  y: 800
+  width: 800
+  height: 150
+  font_size: 16
+  opacity: 0.90
+  max_lines: 3
+ 
+debug:
+  log_latency: false          # log ASR timing at each polling step
+  save_audio: false           # save captured audio to debug/
+  log_vad: false              # log VAD decisions
