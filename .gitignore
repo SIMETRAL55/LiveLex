@@ -1,0 +1,13 @@
+.claude/
+CLAUDE.md
+PLAN.md
+ARCHITECTURE.md
+graphify-out/
+__pycache__
+.gitkeep
+debug/
+.env
+GEMINI.md
+.gemini/
+system-design.md
+transcripts/
