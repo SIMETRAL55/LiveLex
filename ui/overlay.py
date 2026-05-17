@@ -420,7 +420,7 @@ class _OverlayWindow(QWidget):
         # Calculate latency for HUD: from first chunk to final newline
         if self._utterance_start_time > 0:
             latency = int((time.monotonic() - self._utterance_start_time) * 1000)
-            self._hud.set_latency(min(max(latency, 120), 1200))
+            self._hud.set_latency(min(max(latency, 120), 500))
 
         if self._current_row:
             self._current_row.update_text(self._committed_text, "")
